@@ -28,7 +28,7 @@
         <!--Левая главная область-->
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <StackPanel Width="auto" 
-               Height="auto" Opacity="1" Visibility="Visible" Background="Red" DockPanel.Dock="Right">
+               Height="auto" Opacity="1" Visibility="Visible" Background="#FF008500" DockPanel.Dock="Right">
                 <StackPanel.Resources>
                     <Style x:Key="NumericAxisLabelStyle" TargetType="{x:Type charting:NumericAxisLabel}">
                         <Setter Property="IsTabStop" Value="False" />
