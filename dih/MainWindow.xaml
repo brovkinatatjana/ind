@@ -9,7 +9,7 @@
         <!--Главная область меню-->
         <Menu DockPanel.Dock="Top" Background="{x:Null}" HorizontalAlignment="Left" Height="24">
             <MenuItem Header="Меню" Name="FileMenu" Click="FileMenu_Click" Background="{x:Null}" Foreground="White" FontFamily="Deutsch Gothic">
-                
+
                 <MenuItem Header="Выход" Click="ExitClick"/>
             </MenuItem>
             <MenuItem Header="Помощь" Click="HelpClick" Background="{x:Null}" Foreground="White" FontFamily="Deutsch Gothic" />
@@ -54,7 +54,7 @@
                 </Grid>
                 <RadioButton Content="Считать уравнение из файла" Height="16" Name="radioButton_file" Foreground="White" />
                 <RadioButton Content="Ввести уравнение вручную" Height="16" Name="radioButton_TextBox" IsChecked="True" Foreground="White" />
-
+                <Button Content="Далее" Height="23" Name="next" Width="75" Click="next_Click" ToolTip="Ввод дпнных" Background="White" />
                 <Canvas Height="116" Name="canvas1" Width="782" Visibility="Collapsed">
                     <TextBox Canvas.Left="138" Canvas.Top="83" Height="23" Name="t_a" Width="120" ToolTip="Левая граница" BorderBrush="#FF1818AA" Background="Blue" Foreground="White" />
                     <Label Canvas.Left="138" Canvas.Top="57" Content="Нижняя граница (a)" Height="28" Name="l_a" Width="120" Foreground="White" />
