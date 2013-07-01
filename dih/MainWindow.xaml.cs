@@ -85,117 +85,117 @@ namespace dih
             this.Close();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        private void start_Click(object sender, RoutedEventArgs e)
+        {
+            string input;
+            Parser p = new Parser();
+            Parser pp = new Parser();
+            a1 = t_a.Text;
+            b1 = t_b.Text;
+            accurate1 = t_accurate.Text;
+            variable = t_variable.Text;
+            funk = t_function.Text;
+            input = funk;
+            if ((funk != "") || (a1 != "") || (b1 != "") || (accurate1 != ""))
+            {
+                string sPattern = @"(^(\+|\-){0,1}\d+$)|(^(\+|\-){0,1}\d+(\.|\,){1}\d+(\*10\^{0,1}\({0,1}(\+|\-){0,1}\d*\){0,1}){0,1}$)|(^\({0,1}(\+|\-){0,1}\d+\/{1}\d+\){0,1}(\*10\^{0,1}\({0,1}(\+|\-){0,1}\d*\){0,1}){0,1}$)|(^(\+|\-){0,1}\d+(\*10\^{0,1}\({0,1}(\+|\-){0,1}\d*\){0,1}){0,1}$)|(^(10\^{0,1}\({0,1}(\+|\-){0,1}\d*\){0,1}){1}$)";
+                if (Regex.IsMatch(a1, sPattern) && Regex.IsMatch(b1, sPattern) && Regex.IsMatch(accurate1, sPattern))
+                {
+                    string p1 = @"\.";
+                    if (Regex.IsMatch(a1, p1))
+                    {
+                        a1 = Regex.Replace(a1, p1, ",");
+                    }
+                    if (Regex.IsMatch(b1, p1))
+                    {
+                        b1 = Regex.Replace(b1, p1, ",");
+                    }
+                    if (Regex.IsMatch(accurate1, p1))
+                    {
+                        accurate1 = Regex.Replace(accurate1, p1, ",");
+                    }
+                    string p2 = @"abs(.*)|acos(.*)|asin(.*)|atan(.*)|cos(.*)|cosh(.*)|floor(.*)|ln(.*)|log(.*)|sign(.*)|sin(.*)|sinh(.*)|qrt(.*)|tan(.*)|tanh(.*)";
+                    if (Regex.IsMatch(variable, p2))
+                    {
+                        System.Windows.MessageBox.Show("Недопустимое имя переменной", "Ошибка!");
+                    }
+                    else
+                    {
+                        if (p.Evaluate(a1))
+                        {
+                            a = p.Result;
+                        }
+                        if (p.Evaluate(b1))
+                        {
+                            b = p.Result;
+                        }
+                        if (p.Evaluate(accurate1))
+                        {
+                            accurate = p.Result;
+                        }
+                        sw.WriteLine(DateTime.UtcNow.ToString() + "\tПользователь ввел данные:\ta=" + a1 + "\tb=" + b1 + "\tточность" + accurate.ToString() + "\tf(" + variable + ")=" + funk);
+                        if (p.Evaluate(Regex.Replace(input, variable, "(" + a.ToString() + ")")) && pp.Evaluate(Regex.Replace(input, variable, "(" + b.ToString() + ")")))
+                        {
+                            f_a = p.Result;
+                            f_b = pp.Result;
+                            if (f_a * f_b < 0)
+                            {
+                                start.Visibility = Visibility.Collapsed;
+                                Charts.Visibility = Visibility.Visible;
+                                progressBar1.Visibility = Visibility.Visible;
+                                if (s_picture.IsChecked == true)
+                                {
+                                    if (!(Directory.Exists(path)))
+                                    {
+                                        Directory.CreateDirectory(path);
+                                    }
+                                    DirectoryInfo dirInfo = new DirectoryInfo(path);
+                                    foreach (FileInfo file in dirInfo.GetFiles())
+                                    {
+                                        file.Delete();
+                                    }
+                                }
+                                fix_a = a;
+                                fix_b = b;
+                                fix_accurate = accurate;
+                                if ((s_picture.IsChecked == true) || (s_word.IsChecked == true) || (s_txt.IsChecked == true))
+                                {
+                                    save_path();
+                                }
+                                dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+                                dispatcherTimer.Tick += new EventHandler(dichotomia);
+                                dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+                                dispatcherTimer.Start();
+                            }
+                            else
+                            {
+                                sw.WriteLine(DateTime.UtcNow.ToString() + "\tНа заданном промежутке корней нет или их несколько. При заданных параметрах метод не применим.");
+                                System.Windows.MessageBox.Show("На заданном промежутке корней нет или их несколько. При заданных параметрах метод не применим.", "Ошибка!");
+                            }
+
+
+                        }
+                        else
+                        {
+                            sw.WriteLine(DateTime.UtcNow.ToString() + "\tВведенная функция не может быть распознана");
+                            System.Windows.MessageBox.Show("Введенная функция не может быть распознана. Проверьте правильность ввода.", "Ошибка!");
+                        }
+                    }
+
+
+                }
+                else
+                {
+                    sw.WriteLine(DateTime.UtcNow.ToString() + "\tДанные введены некорректно (неизвестный формат)");
+                    System.Windows.MessageBox.Show("Данные введены некорректно (неизвестный формат)", "Ошибка!");
+                }
+            }
+            else
+            {
+                sw.WriteLine(DateTime.UtcNow.ToString() + "\tДанные не были введены");
+                System.Windows.MessageBox.Show("Введите данные", "Ошибка!");
+            }
+        }
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
 
@@ -393,10 +393,10 @@ namespace dih
                         stream.Close();
                         t_function.Visibility = Visibility.Visible;
                         canvas1.Visibility = Visibility.Visible;
-
+                        start.Visibility = Visibility.Visible;
                         radioButton_file.Visibility = Visibility.Collapsed;
                         radioButton_TextBox.Visibility = Visibility.Collapsed;
-
+                        next.Visibility = Visibility.Collapsed;
                         s_word.Visibility = Visibility.Visible;
                         s_picture.Visibility = Visibility.Visible;
                         s_txt.Visibility = Visibility.Visible;
@@ -414,10 +414,10 @@ namespace dih
             {
                 t_function.Visibility = Visibility.Visible;
                 canvas1.Visibility = Visibility.Visible;
-
+                start.Visibility = Visibility.Visible;
                 radioButton_file.Visibility = Visibility.Collapsed;
                 radioButton_TextBox.Visibility = Visibility.Collapsed;
-
+                next.Visibility = Visibility.Collapsed;
                 s_word.Visibility = Visibility.Visible;
                 s_picture.Visibility = Visibility.Visible;
                 s_txt.Visibility = Visibility.Visible;
@@ -425,40 +425,40 @@ namespace dih
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        private void reset_Click(object sender, RoutedEventArgs e)
+        {
+            sw.WriteLine(DateTime.UtcNow.ToString() + "\tПользовательперезапустил приложение");
+            Charts.Series.Clear();
+            dispatcherTimer.Stop();
+            t_function.Visibility = Visibility.Collapsed;
+            canvas1.Visibility = Visibility.Collapsed;
+            start.Visibility = Visibility.Collapsed;
+            radioButton_file.Visibility = Visibility.Visible;
+            radioButton_TextBox.Visibility = Visibility.Visible;
+            next.Visibility = Visibility.Visible;
+            Charts.Visibility = Visibility.Collapsed;
+            progressBar1.Visibility = Visibility.Collapsed;
+            s_word.Visibility = Visibility.Collapsed;
+            s_picture.Visibility = Visibility.Collapsed;
+            s_txt.Visibility = Visibility.Collapsed;
+            l_s.Visibility = Visibility.Collapsed;
+            flag = "textbox";
+            t_function.Text = "";
+            t_a.Text = "";
+            t_b.Text = "";
+            t_accurate.Text = "";
+            t_variable.Text = "";
+            funk = "";
+            variable = "";
+            a1 = "";
+            b1 = "";
+            accurate1 = "";
+            step = 1;
+            path = "picture";
+            s_picture.IsChecked = false;
+            s_txt.IsChecked = false;
+            s_word.IsChecked = false;
+        }
 
         public void gif()
         {
