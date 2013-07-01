@@ -70,7 +70,7 @@
                 <CheckBox Content="Сохранить результаты в текстовый файл" Height="16" Name="s_txt" Width="777" Visibility="Collapsed" Foreground="White" />
                 <CheckBox Content="Сохранить графическое отображение результатов расчета" Height="16" Name="s_picture" Visibility="Collapsed" Width="777" Foreground="White" />
                 <CheckBox Content="Сохранить результаты в word " Height="16" Name="s_word" Visibility="Collapsed" Width="777" Foreground="White" />
-
+                <Button Content="Решить" Height="26" Name="start" Width="118" Background="White" Click="start_Click" Visibility="Collapsed" />
                 <Label Content="Label" Height="33" Name="l_s" Visibility="Collapsed" FontSize="16" FontWeight="Bold" Width="777" Foreground="White" />
                 <Label Content="Идет сохранение..." Height="32" Name="l_save" Width="134" Visibility="Collapsed" FontSize="14" Foreground="Red" />
                 <charting:Chart Name="Charts" Margin="3" Height="400" Width="478" Visibility="Collapsed">

@@ -140,7 +140,7 @@ namespace dih
                             f_b = pp.Result;
                             if (f_a * f_b < 0)
                             {
-                                
+                                start.Visibility = Visibility.Collapsed;
                                 Charts.Visibility = Visibility.Visible;
                                 progressBar1.Visibility = Visibility.Visible;
                                 if (s_picture.IsChecked == true)
@@ -393,7 +393,7 @@ namespace dih
                         stream.Close();
                         t_function.Visibility = Visibility.Visible;
                         canvas1.Visibility = Visibility.Visible;
-                        
+                        start.Visibility = Visibility.Visible;
                         radioButton_file.Visibility = Visibility.Collapsed;
                         radioButton_TextBox.Visibility = Visibility.Collapsed;
                         next.Visibility = Visibility.Collapsed;
@@ -414,7 +414,7 @@ namespace dih
             {
                 t_function.Visibility = Visibility.Visible;
                 canvas1.Visibility = Visibility.Visible;
-                
+                start.Visibility = Visibility.Visible;
                 radioButton_file.Visibility = Visibility.Collapsed;
                 radioButton_TextBox.Visibility = Visibility.Collapsed;
                 next.Visibility = Visibility.Collapsed;
@@ -432,7 +432,7 @@ namespace dih
             dispatcherTimer.Stop();
             t_function.Visibility = Visibility.Collapsed;
             canvas1.Visibility = Visibility.Collapsed;
-            
+            start.Visibility = Visibility.Collapsed;
             radioButton_file.Visibility = Visibility.Visible;
             radioButton_TextBox.Visibility = Visibility.Visible;
             next.Visibility = Visibility.Visible;
