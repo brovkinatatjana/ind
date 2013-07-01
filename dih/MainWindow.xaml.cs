@@ -67,7 +67,7 @@ namespace dih
 
         private void HelpClick(object sender, RoutedEventArgs e)
         {
-
+            System.Windows.MessageBox.Show("\tПрограмма предназначена для решения нелинейных уравнений с заданной точностью.\n\tПоддерживается распознавание функций: abs, acos, asin, atan, cos, cosh, floor, ln, log, sign, sin, sinh, sqrt, tan, tanh. \n\tПоддерживается ввод данных из файла. Размещение данных в файле:\n 1-я строка - левая граница\n 2-я строка - правая граница\n 3-я строка - точность\n 4-я сторка - имя переменной\n 5-я строка - выражение", "Справка");
         }
 
         private void ExitClick(object sender, RoutedEventArgs e)
