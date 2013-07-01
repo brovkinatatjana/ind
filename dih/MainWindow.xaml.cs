@@ -202,20 +202,20 @@ namespace dih
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        private void next_Click(object sender, RoutedEventArgs e)
+        {
+            if (radioButton_file.IsChecked == true)
+            {
+                sw.WriteLine(DateTime.UtcNow.ToString() + "\tПользователь выбрал считывание данных из файла");
+                flag = "file";
+            }
+            if (radioButton_TextBox.IsChecked == true)
+            {
+                sw.WriteLine(DateTime.UtcNow.ToString() + "\tПользователь выбрал ввод данных вручную");
+                flag = "textbox";
+            }
+            get_data();
+        }
 
 
         public void dichotomia(object sender, EventArgs e)
@@ -393,10 +393,10 @@ namespace dih
                         stream.Close();
                         t_function.Visibility = Visibility.Visible;
                         canvas1.Visibility = Visibility.Visible;
-                        
+
                         radioButton_file.Visibility = Visibility.Collapsed;
                         radioButton_TextBox.Visibility = Visibility.Collapsed;
-                        
+
                         s_word.Visibility = Visibility.Visible;
                         s_picture.Visibility = Visibility.Visible;
                         s_txt.Visibility = Visibility.Visible;
@@ -414,10 +414,10 @@ namespace dih
             {
                 t_function.Visibility = Visibility.Visible;
                 canvas1.Visibility = Visibility.Visible;
-                
+
                 radioButton_file.Visibility = Visibility.Collapsed;
                 radioButton_TextBox.Visibility = Visibility.Collapsed;
-                
+
                 s_word.Visibility = Visibility.Visible;
                 s_picture.Visibility = Visibility.Visible;
                 s_txt.Visibility = Visibility.Visible;
