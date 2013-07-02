@@ -8,9 +8,9 @@
             Height="Auto" LastChildFill="True" Background="Blue">
         <!--Главная область меню-->
         <Menu DockPanel.Dock="Top" Background="{x:Null}" HorizontalAlignment="Left" Height="24">
-            <MenuItem Header="Меню" Name="FileMenu" Click="FileMenu_Click" Background="{x:Null}" Foreground="White" FontFamily="Deutsch Gothic">
-                <MenuItem Header="Заново" Click="reset_Click"/>
-                <MenuItem Header="Выход" Click="ExitClick"/>
+            <MenuItem Header="Меню" Name="FileMenu" Click="FileMenu_Click" Background="Blue" Foreground="White" FontFamily="Deutsch Gothic">
+                <MenuItem Header="Заново" Click="reset_Click" Background="Blue" />
+                <MenuItem Header="Выход" Click="ExitClick" Background="Blue" />
             </MenuItem>
             <MenuItem Header="Помощь" Click="HelpClick" Background="{x:Null}" Foreground="White" FontFamily="Deutsch Gothic" />
         </Menu>
@@ -72,7 +72,6 @@
                 <CheckBox Content="Сохранить результаты в word " Height="16" Name="s_word" Visibility="Collapsed" Width="777" Foreground="White" />
                 <Button Content="Решить" Height="26" Name="start" Width="118" Background="White" Click="start_Click" Visibility="Collapsed" />
                 <Label Content="Label" Height="33" Name="l_s" Visibility="Collapsed" FontSize="16" FontWeight="Bold" Width="777" Foreground="White" />
-                <Label Content="Идет сохранение..." Height="32" Name="l_save" Width="134" Visibility="Collapsed" FontSize="14" Foreground="Red" />
                 <charting:Chart Name="Charts" Margin="3" Height="400" Width="478" Visibility="Collapsed">
                     <charting:LineSeries Name="ChartOne" DataContext="{Binding}" DependentValueBinding="{Binding StringFormat=\{0:F5\}}" RenderTransformOrigin="0,0" />
                     <charting:Chart.Axes>

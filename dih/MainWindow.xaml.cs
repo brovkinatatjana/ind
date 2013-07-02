@@ -338,10 +338,10 @@ namespace dih
                             x = f_b;
                         progressBar1.Visibility = Visibility.Collapsed;
                         dispatcherTimer.Stop();
-                        l_save.Visibility = Visibility.Visible;
+                        
                         l_s.Content = variable + "=" + x.ToString();
                         l_s.Visibility = Visibility.Visible;
-                        System.Windows.MessageBox.Show(variable + "=" + x.ToString(), "Решение");
+                        //System.Windows.MessageBox.Show(variable + "=" + x.ToString(), "Решение");
                         if (s_picture.IsChecked == true)
                         {
                             sw.WriteLine(DateTime.UtcNow.ToString() + "\tВыбрано сохранение графика");
@@ -479,7 +479,7 @@ namespace dih
                 }
             }
             e.Finish();
-            l_save.Visibility = Visibility.Collapsed;
+            
         }
         public void save_word(double x)
         {
