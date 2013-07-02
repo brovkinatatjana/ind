@@ -143,13 +143,17 @@ namespace dih
                                 start.Visibility = Visibility.Collapsed;
                                 Charts.Visibility = Visibility.Visible;
                                 progressBar1.Visibility = Visibility.Visible;
+                                if ((s_picture.IsChecked == true) || (s_word.IsChecked == true) || (s_txt.IsChecked == true))
+                                {
+                                    save_path();
+                                }
                                 if (s_picture.IsChecked == true)
                                 {
-                                    if (!(Directory.Exists(path)))
+                                    if (!(Directory.Exists(Path+path)))
                                     {
-                                        Directory.CreateDirectory(path);
+                                        Directory.CreateDirectory(Path + path);
                                     }
-                                    DirectoryInfo dirInfo = new DirectoryInfo(path);
+                                    DirectoryInfo dirInfo = new DirectoryInfo(Path + path);
                                     foreach (FileInfo file in dirInfo.GetFiles())
                                     {
                                         file.Delete();
@@ -157,11 +161,7 @@ namespace dih
                                 }
                                 fix_a = a;
                                 fix_b = b;
-                                fix_accurate = accurate;
-                                if ((s_picture.IsChecked == true) || (s_word.IsChecked == true) || (s_txt.IsChecked == true))
-                                {
-                                    save_path();
-                                }
+                                fix_accurate = accurate; 
                                 dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
                                 dispatcherTimer.Tick += new EventHandler(dichotomia);
                                 dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
@@ -301,7 +301,7 @@ namespace dih
                             renderBitmap.Render(isolatedVisual);
 
                             Microsoft.Win32.SaveFileDialog uloz_obr = new Microsoft.Win32.SaveFileDialog();
-                            uloz_obr.FileName = "picture\\Graf" + step.ToString() + ".png";
+                            uloz_obr.FileName =Path+path+ "\\Graf" + step.ToString() + ".png";
                             uloz_obr.DefaultExt = "png";
                             string obr_cesta = uloz_obr.FileName;
                             using (FileStream outStream = new FileStream(obr_cesta, FileMode.Create))
@@ -345,7 +345,7 @@ namespace dih
                         if (s_picture.IsChecked == true)
                         {
                             sw.WriteLine(DateTime.UtcNow.ToString() + "\tВыбрано сохранение графика");
-                            gif();
+                            //gif();
                         }
                         if (s_word.IsChecked == true)
                         {
@@ -469,13 +469,13 @@ namespace dih
             e.Start(outputFilePath);
             e.SetDelay(500);
             e.SetRepeat(0);
-            if (Directory.Exists(path))
+            if (Directory.Exists(Path + path))
             {
-                DirectoryInfo dirInfo = new DirectoryInfo(path);
+                DirectoryInfo dirInfo = new DirectoryInfo(Path + path);
                 int tt = dirInfo.GetFiles().Length;
                 for (index = 1; index <= tt; index++)
                 {
-                    e.AddFrame(System.Drawing.Image.FromFile("picture\\Graf" + index.ToString() + ".png"));
+                    e.AddFrame(System.Drawing.Image.FromFile(Path+path+"\\Graf" + index.ToString() + ".png"));
                 }
             }
             e.Finish();
@@ -490,7 +490,7 @@ namespace dih
             Object visible = Type.Missing;
             wordApplication.Documents.Add(ref template, ref newTemplate, ref documentType, ref visible);//добавили в проложение документ
             Word.Document doc = wordApplication.ActiveDocument;
-            wordApplication.Visible = true; //делаем что бы word не работал в фоновом режиме
+            //wordApplication.Visible = true; //делаем что бы word не работал в фоновом режиме
             Object r = Type.Missing;
             Word.Paragraph par = doc.Content.Paragraphs.Add(ref r);//дабавляем в документ параграф
             Object missing = Type.Missing;
