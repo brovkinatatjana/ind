@@ -13,13 +13,12 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MathParser;
 using System.Text.RegularExpressions;
-using Microsoft.Win32;
+using Microsoft.Win32;  
 using System.IO;
 using System.IO.Log;
 using System.Windows.Controls.DataVisualization.Charting;
 using System.Collections.ObjectModel;
 using Gif.Components;
-//using Microsoft.Office.Interop.Word;
 using System.Reflection;
 using Word = Microsoft.Office.Interop.Word;
 
@@ -263,10 +262,10 @@ namespace dih
             }
             if (flag1 != 0)
             {
-                Y.Minimum = min - Math.Abs(b - a) / 50;
-                X.Minimum = min - Math.Abs(b - a) / 50;
-                Y.Maximum = max + Math.Abs(b - a) / 50;
-                X.Maximum = max + Math.Abs(b - a) / 50;
+                Y.Minimum = min - Math.Abs(b - a) / 100;
+                X.Minimum = min - Math.Abs(b - a) / 100;
+                Y.Maximum = max + Math.Abs(b - a) / 100;
+                X.Maximum = max + Math.Abs(b - a) / 100;
                 NewChart.ItemsSource = C1;
                 NewChart.DependentValuePath = "Value1";
                 NewChart.IndependentValuePath = "Value2";
@@ -332,10 +331,6 @@ namespace dih
                     }
                     else
                     {
-                        if (f_a == 0)
-                            x = f_a;
-                        if (f_b == 0)
-                            x = f_b;
                         progressBar1.Visibility = Visibility.Collapsed;
                         dispatcherTimer.Stop();
                         
